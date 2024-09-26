@@ -1,20 +1,20 @@
 public class Room {
 
-    private String roomName;
-    private String description;
+    private final String ROOMNAME;
+    private final String DESCRIPTION;
     private Room north, south, east, west;
 
     public Room(String roomName, String description) {
-        this.roomName = roomName;
-        this.description = description;
+        this.ROOMNAME = roomName;
+        this.DESCRIPTION = description;
     }
 
-    public String getRoomName() {
-        return roomName;
+    public String getROOMNAME() {
+        return ROOMNAME;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDESCRIPTION() {
+        return DESCRIPTION;
     }
 
     public void setNorth(Room north) {

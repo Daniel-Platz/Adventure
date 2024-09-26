@@ -12,7 +12,7 @@ public class UserInterface {
     public void startGame() {
         boolean isRunning = true;
 
-        System.out.println("Welcome to the Adventure Game!" + "\n" + "Here is a list of commands which can be used in the game: look, go [north, south, east, west], exit." + "\n" + "In case you need any help - Type 'help' for a list of commands.");
+        System.out.println("Welcome to the The Guardian’s Path!" + "\nHere is a list of commands which can be used in the game: look, go [north, south, east, west], exit." + "\nIn case you need any help - Type 'help' for a list of commands.");
         while (isRunning) {
             System.out.print("Enter a command: ");
             String command = scanner.nextLine().toLowerCase();
