@@ -4,5 +4,6 @@ public class Main {
         Adventure adventure = new Adventure(map);
         UserInterface ui = new UserInterface(adventure);
         ui.startGame();
+
     }
 }

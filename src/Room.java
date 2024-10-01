@@ -1,8 +1,11 @@
+import java.util.ArrayList;
+
 public class Room {
 
     private final String ROOMNAME;
     private final String DESCRIPTION;
     private Room north, south, east, west;
+    private ArrayList<Item> itemsInRoom = new ArrayList<>();
 
     public Room(String roomName, String description) {
         this.ROOMNAME = roomName;
@@ -47,5 +50,32 @@ public class Room {
 
     public Room getWest() {
         return west;
+    }
+
+    public void addItemToRoom(String itemName) {
+        itemsInRoom.add(new Item(itemName));
+    }
+
+    public Item findItem(String partialName) {
+        for (Item item : itemsInRoom) {
+            if (item.getItemName().toLowerCase().contains(partialName.toLowerCase())) {
+                return item;
+            }
+        }
+        return null;
+    }
+
+    public Item takeItem(String itemName) {
+        for (Item item : new ArrayList<>(itemsInRoom)) {
+            if (item.getItemName().equalsIgnoreCase(itemName)) {
+                itemsInRoom.remove(item);
+                return item;
+            }
+        }
+        return null;
+    }
+
+    public ArrayList<Item> getItemsInRoom() {
+        return itemsInRoom;
     }
 }
