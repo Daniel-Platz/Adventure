@@ -25,7 +25,7 @@ public class UserInterface {
                     if (takenItem != null) {
                         System.out.println("You have taken: " + takenItem.getItemName());
                     } else {
-                        System.out.println("Item not found");
+                        System.out.println("There is nothing like " + itemName + " to take around here");
                     }
                 }
                 case "drop" -> {
@@ -35,7 +35,7 @@ public class UserInterface {
                     if (droppedItem != null) {
                         System.out.println("You have dropped: " + droppedItem.getItemName());
                     } else {
-                        System.out.println("Item not found");
+                        System.out.println("You don't have anything like " + itemName + " in your inventory");
                     }
                 }
 

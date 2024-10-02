@@ -64,17 +64,7 @@ public class Room {
         }
         return null;
     }
-
-    public Item takeItem(String itemName) {
-        for (Item item : new ArrayList<>(itemsInRoom)) {
-            if (item.getItemName().equalsIgnoreCase(itemName)) {
-                itemsInRoom.remove(item);
-                return item;
-            }
-        }
-        return null;
-    }
-
+    
     public ArrayList<Item> getItemsInRoom() {
         return itemsInRoom;
     }
