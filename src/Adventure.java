@@ -1,75 +1,84 @@
-import java.util.ArrayList;
-
 public class Adventure {
+    private Player player;
+    private UserInterface ui;
 
-    private final Player player;
-
-    public Adventure(Map map) {
-        player = new Player(map.getStartingRoom());
+    public Adventure() {
+        Map map = new Map();
+        Rooms startingRoom = map.createRooms();
+        player = new Player(startingRoom);
+        ui = new UserInterface(this);
     }
 
-    public String look() {
-        String itemsDescription;
-        if (player.getCurrentRoom().getItemsInRoom().isEmpty()) {
-            itemsDescription = "There are no items in this room";
+    public void startGame() {
+        //ui.print("Welcome to The Guardian’s Path!");
+        //ui.print("Before we get started, here is a list of useful commands which can be used during the game: \n\nlook \ntake \ndrop \ngo [north, south, east, west] \nexit \nhelp \n \nEjoy the game! \n");
+        ui.print("""
+                Welcome to The Guardian's Path!
+                Before we get started, here is a list of useful commands:
+                look
+                take
+                drop
+                go [north, south, east, west]
+                exit
+                help
+                """);
+        ui.print("You currently find yourself in " + player.getCurrentRoom().getRoomName() + " " + player.getCurrentRoom().getRoomDescription());
+
+        boolean isRunning = true;
+
+        while (isRunning) {
+            String userInput = ui.getInput();
+            String[] userChoice = userInput.split(" ");
+            String command = userChoice[0];
+
+            switch (command.toLowerCase()) {
+                case "exit" -> {
+                    ui.print("Exiting game");
+                    isRunning = false;
+                }
+                case "help" -> {
+                    ui.print("Here is a list of commands: look, take, drop, go [north, south, east, west], exit, help");
+                }
+                case "look" -> {
+                    ui.print(player.getCurrentRoom().getRoomDescription());
+                }
+                case "go" -> {
+                    if (userChoice.length > 1) {
+                        ui.print(movePlayer(userChoice[1]));
+                    } else {
+                        ui.print("Please specify a direction (north, east, south, west).");
+                    }
+                }
+                case "take" -> {
+                    if (userChoice.length > 1) {
+                        ui.print(player.takeItem(userChoice[1]));
+                    } else {
+                        ui.print("Please specify the item you want to take.");
+                    }
+                }
+                case "drop" -> {
+                    if (userChoice.length > 1) {
+                        ui.print(player.dropItem(userChoice[1]));
+                    } else {
+                        ui.print("Please specify the item you want to drop.");
+                    }
+                }
+                case "inventory", "inv", "i" -> {
+                    ui.print(player.showInventory());
+                }
+                default -> {
+                    ui.print("Unknown command. Type 'help' for a list of commands.");
+                }
+            }
+        }
+    }
+
+    public String movePlayer(String direction) {
+        boolean moved = player.move(direction);
+        if (moved) {
+            return "You are now in: " + player.getCurrentRoom().getRoomName() + "\n" + player.getCurrentRoom().getRoomDescription();
         } else {
-            itemsDescription = "The following items are in the room: " + player.getCurrentRoom().getItemsInRoom();
-        }
-
-        return "You are in " + player.getCurrentRoom().getROOMNAME() + "\n" + player.getCurrentRoom().getDESCRIPTION() + "\n" + itemsDescription;
-    }
-
-    public Item take(String itemName) {
-        Item item = player.getCurrentRoom().findItem(itemName);
-        if (item != null) {
-            player.getCurrentRoom().getItemsInRoom().remove(item);
-            player.getItemsInInventory().add(item);
-            return item;
-        }
-        return null;
-    }
-
-    public Item drop(String itemName) {
-        return player.dropItem(itemName);
-    }
-
-    public ArrayList<Item> inventory() {
-        return player.getItemsInInventory();
-    }
-
-    public String move(String direction) {
-        Room nextRoom;
-        switch (direction) {
-            case "north" -> {
-                nextRoom = player.getCurrentRoom().getNorth();
-            }
-            case "south" -> {
-                nextRoom = player.getCurrentRoom().getSouth();
-            }
-            case "east" -> {
-                nextRoom = player.getCurrentRoom().getEast();
-            }
-            case "west" -> {
-                nextRoom = player.getCurrentRoom().getWest();
-            }
-            default -> {
-                return "Invalid direction.";
-            }
-        }
-
-        if (nextRoom != null) {
-            player.setCurrentRoom(nextRoom);
-            String itemsDescription;
-            if (player.getCurrentRoom().getItemsInRoom().isEmpty()) {
-                itemsDescription = "There are no items in this room.";
-            } else {
-                itemsDescription = "Items in this room: " + player.getCurrentRoom().getItemsInRoom().toString();
-            }
-
-            return "You moved to " + player.getCurrentRoom().getROOMNAME() + "\n"
-                    + player.getCurrentRoom().getDESCRIPTION() + "\n" + itemsDescription;
-        } else {
-            return "You cannot go that way!";
+            return "That way is blocked.";
         }
     }
 }
