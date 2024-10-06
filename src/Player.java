@@ -1,12 +1,18 @@
+import ItemPackage.EatStatus;
+import ItemPackage.Food;
+import ItemPackage.Items;
+
 import java.util.ArrayList;
 
 public class Player {
     private Rooms currentRoom;
     private ArrayList<Items> itemsInInventory;
+    private int currentHealth;
 
     public Player(Rooms startRoom) {
         this.currentRoom = startRoom;
         this.itemsInInventory = new ArrayList<>();
+        this.currentHealth = 100;
     }
 
     public String takeItem(String itemName) {
@@ -35,11 +41,43 @@ public class Player {
         if (itemsInInventory.isEmpty()) {
             return "There are no items in your inventory.";
         } else {
-            StringBuilder inventoryList = new StringBuilder("You have the following items in your inventory:\n");
+            String inventoryList = "You have the following items in your inventory:\n";
             for (Items item : itemsInInventory) {
-                inventoryList.append("- ").append(item.getLongName()).append("\n");
+                inventoryList += "- " + item.getLongName() + "\n";
             }
-            return inventoryList.toString();
+            return inventoryList;
+        }
+    }
+
+    public int getCurrentHealth() {
+        return currentHealth;
+    }
+
+    public EatStatus eat(String itemName) {
+        Items item = findItem(itemName);
+        if (item == null) {
+            item = currentRoom.findItem(itemName);
+        }
+
+        if (item == null) {
+            return EatStatus.ITEM_NOT_FOUND;
+        }
+
+        if (item instanceof Food foodItem) {
+            int healthRestored = foodItem.getHealthRestored();
+            int actualHealthRestored = Math.min(healthRestored, 100 - currentHealth);  // Limit health restoration to 100
+
+            currentHealth += actualHealthRestored;
+
+            if (itemsInInventory.contains(item)) {
+                itemsInInventory.remove(item);
+            } else {
+                currentRoom.removeItem(item);
+            }
+
+            return EatStatus.SUCCESS.setDetails(item.getLongName(), actualHealthRestored);
+        } else {
+            return EatStatus.NOT_EDIBLE;
         }
     }
 

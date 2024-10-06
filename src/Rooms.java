@@ -1,3 +1,5 @@
+import ItemPackage.Items;
+
 import java.util.ArrayList;
 
 public class Rooms {
@@ -21,9 +23,9 @@ public class Rooms {
         String description = roomDescription;
 
         if (!itemsInRoom.isEmpty()) {
-            description += "\nItems in the room: ";
+            description += "\nItems in the room:\n\t";
             for (Items item : itemsInRoom) {
-                description += item.getLongName() + "\n";
+                description += item.getLongName() + "\n\t";
             }
         } else {
             description += "\nThere are no items in this room.";

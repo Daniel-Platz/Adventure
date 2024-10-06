@@ -1,3 +1,5 @@
+import ItemPackage.EatStatus;
+
 public class Adventure {
     private Player player;
     private UserInterface ui;
@@ -10,14 +12,14 @@ public class Adventure {
     }
 
     public void startGame() {
-        //ui.print("Welcome to The Guardian’s Path!");
-        //ui.print("Before we get started, here is a list of useful commands which can be used during the game: \n\nlook \ntake \ndrop \ngo [north, south, east, west] \nexit \nhelp \n \nEjoy the game! \n");
         ui.print("""
-                Welcome to The Guardian's Path!
+                Welcome to Guardians of the Nexus!
                 Before we get started, here is a list of useful commands:
                 look
                 take
                 drop
+                eat
+                health
                 go [north, south, east, west]
                 exit
                 help
@@ -37,7 +39,7 @@ public class Adventure {
                     isRunning = false;
                 }
                 case "help" -> {
-                    ui.print("Here is a list of commands: look, take, drop, go [north, south, east, west], exit, help");
+                    ui.print("Here is a list of commands: look, take, drop, eat, health, go [north, south, east, west], exit, help");
                 }
                 case "look" -> {
                     ui.print(player.getCurrentRoom().getRoomDescription());
@@ -63,6 +65,17 @@ public class Adventure {
                         ui.print("Please specify the item you want to drop.");
                     }
                 }
+                case "eat" -> {
+                    if (userChoice.length > 1) {
+                        EatStatus status = player.eat(userChoice[1]);
+                        handleEatStatus(status);
+                    } else {
+                        ui.print("Please specify the item you want to eat.");
+                    }
+                }
+                case "health" -> {
+                    ui.print("Your current health is at: " + player.getCurrentHealth() + "/100");
+                }
                 case "inventory", "inv", "i" -> {
                     ui.print(player.showInventory());
                 }
@@ -79,6 +92,14 @@ public class Adventure {
             return "You are now in: " + player.getCurrentRoom().getRoomName() + "\n" + player.getCurrentRoom().getRoomDescription();
         } else {
             return "That way is blocked.";
+        }
+    }
+
+    public void handleEatStatus(EatStatus status) {
+        switch (status) {
+            case SUCCESS -> ui.print("You ate " + status.getItemLongName() + " and restored " + status.getHealthRestored() + " health. Current health: " + player.getCurrentHealth() + "/100.");
+            case ITEM_NOT_FOUND -> ui.print("There's nothing like that to eat.");
+            case NOT_EDIBLE -> ui.print("You cannot eat that.");
         }
     }
 }

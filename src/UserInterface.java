@@ -1,4 +1,3 @@
-
 import java.util.Scanner;
 
 public class UserInterface {
@@ -7,9 +6,9 @@ public class UserInterface {
     }
 
     public String getInput() {
-        Scanner brugerInput = new Scanner(System.in);
+        Scanner userInput = new Scanner(System.in);
         System.out.print("Enter a command: ");
-        return brugerInput.nextLine();
+        return userInput.nextLine();
     }
     public void print(String message) {
         System.out.println(message);

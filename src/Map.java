@@ -1,35 +1,76 @@
+import ItemPackage.Food;
+import ItemPackage.Items;
+
 public class Map {
     public Rooms createRooms() {
-        Rooms room1 = new Rooms("The Outer Watchtower", "A tall, crumbling tower overlooking the distant lands. The wind howls through the open windows, carrying whispers of danger ahead. ");
-        Rooms room2 = new Rooms("The Forgotten Armory", "Rusted weapons and shattered shields lie scattered. A faint glow emanates from a weapon long forgotten, but something feels off. ");
-        Rooms room3 = new Rooms("The Warden’s Quarters", "An abandoned room with overturned furniture. A strange marking on the wall hints at a secret once kept here. ");
-        Rooms room4 = new Rooms("The Hall of Chains", "Rusty chains dangle from the ceiling, and the walls are covered with ancient inscriptions. The air is thick with past suffering. ");
-        Rooms room5 = new Rooms("The Vault of Eternity", "This treasure room is vast and illuminated by an eerie golden light. A massive chest sits in the center, but reaching it feels like disturbing something sacred. ");
-        Rooms room6 = new Rooms("The Echoing Tunnels", "Dark, winding tunnels that stretch endlessly. Every sound bounces back twice as loud, making it impossible to tell where the danger lies. ");
-        Rooms room7 = new Rooms("The Keeper’s Chamber", "The personal quarters of a long-forgotten guardian. It’s as if someone was here recently, and their presence lingers. ");
-        Rooms room8 = new Rooms("The Guardian’s Passage", "A narrow, dimly lit corridor with carvings warning of dangers ahead. This passage is the only way into the Vault of Eternity. ");
-        Rooms room9 = new Rooms("The Fallen Bastion", "Once a great fortress, now crumbled into ruins. The floor is littered with debris, and signs of a fierce battle still remain. ");
 
-        room1.addItemToRoom(new Items("spyglass", "A cracked spyglass"));
-        room1.addItemToRoom(new Items("telescope", "A rusted telescope"));
+        Rooms room1 = new Rooms("The Sanctum Tower.", "A towering, ancient structure reminiscent of Doctor Strange’s Sanctum Sanctorum. Mystical energies swirl through the air, with the faint hum of otherworldly magic.");
+        Rooms room2 = new Rooms("The Asgardian Armory.", "The once-grand armory of Asgard, filled with broken relics and discarded weapons of the mighty gods. A faint glow from Mjolnir’s forgotten shards illuminates the chamber.");
+        Rooms room3 = new Rooms("The Stark Quarters.", "An abandoned room with overturned furniture, resembling Tony Stark's workshop. A mysterious holographic marking hints at a hidden project left behind.");
+        Rooms room4 = new Rooms("The Hydra Chains.", "Rusty chains dangle from the ceiling, engraved with the Hydra emblem. The room reeks of treachery, its walls bearing symbols of a sinister organization.");
+        Rooms room5 = new Rooms("The Wakandan Vault.", "A treasure room glowing with the light of vibranium. The walls are etched with ancient Wakandan symbols, and a mysterious artifact radiates immense power.");
+        Rooms room6 = new Rooms("The Quantum Tunnels.", "Dark, winding tunnels that stretch endlessly like the quantum realm. The echoes distort as if bouncing through different dimensions, making it hard to find your way.");
+        Rooms room7 = new Rooms("The Guardian's Chamber.", "The personal quarters of a powerful being, perhaps an Elder of the Universe. It feels as though someone or something has been here recently.");
+        Rooms room8 = new Rooms("The Nexus Corridor.", "A dimly lit passage, adorned with warnings about the dangers of tampering with the multiverse. It leads straight to the Vault of Wakanda, where powerful forces await.");
+        Rooms room9 = new Rooms("The Fallen Bastion.", "Once a great fortress, now resembling the ruins of a battle between the Avengers and Thanos. The remnants of the struggle for the Infinity Stones still echo in the air.");
 
-        room2.addItemToRoom(new Items("sword", "A glowing sword"));
-        room2.addItemToRoom(new Items("helmet", "A forgotten helmet"));
+// Sanctum Tower (Doctor Strange's Sanctum)
+        room1.addItemToRoom(new Items("Eye", "Eye of Agamotto"));
+        room1.addItemToRoom(new Items("Cloak", "Cloak of Levitation"));
+        room1.addItemToRoom(new Items("Wand", "Wand of Watoomb"));
+        room1.addItemToRoom(new Items("Orb", "Astral Orb"));
+        room1.addItemToRoom(new Food("Berries", "Chitauri Berries", 10));
 
-        room3.addItemToRoom(new Items("mirror", "A cracked mirror"));
+// Asgardian Armory (Asgardian relics)
+        room2.addItemToRoom(new Items("Shards", "Mjolnir Shards"));
+        room2.addItemToRoom(new Items("Helmet", "Asgardian Helmet"));
+        room2.addItemToRoom(new Items("Spear", "Odin's Spear Fragment"));
+        room2.addItemToRoom(new Items("Gauntlet", "Valkyrie’s Gauntlet"));
+        room2.addItemToRoom(new Food("Bread", "Lembas Bread", 8));
 
-        room4.addItemToRoom(new Items("dagger", "A broken ceremonial dagger"));
+// Stark Quarters (Tony Stark’s abandoned workshop)
+        room3.addItemToRoom(new Items("Reactor", "Arc Reactor"));
+        room3.addItemToRoom(new Items("Gauntlet", "Iron Man Gauntlet"));
+        room3.addItemToRoom(new Items("Projector", "Hologram Projector"));
+        room3.addItemToRoom(new Items("Glove", "Repulsor Glove"));
+        room3.addItemToRoom(new Food("Cheese", "Stark Cheese", 15));
 
-        room5.addItemToRoom(new Items("treasure chest", "A massive treasure chest"));
-        room5.addItemToRoom(new Items("orb", "A glowing orb"));
-        room5.addItemToRoom(new Items("crown", "A jeweled crown"));
+// Hydra Chains (Hydra's sinister secrets)
+        room4.addItemToRoom(new Items("Dagger", "Hydra Dagger"));
+        room4.addItemToRoom(new Items("Tesseract", "Tesseract Fragment"));
+        room4.addItemToRoom(new Items("Arm", "Winter Soldier's Arm"));
+        room4.addItemToRoom(new Food("Rations", "Hydra Rations", 5));
 
-        room7.addItemToRoom(new Items("cloak", "A dusty cloak"));
+// Wakandan Vault (Vibranium treasures)
+        room5.addItemToRoom(new Items("Chest", "Vibranium Chest"));
+        room5.addItemToRoom(new Items("Orb", "Soul Orb"));
+        room5.addItemToRoom(new Items("Crown", "Panther Crown"));
+        room5.addItemToRoom(new Food("Herb", "Heart-Shaped Herb", 50));
 
-        room8.addItemToRoom(new Items("shield", "A cracked shield"));
+// Quantum Tunnels (Quantum Realm exploration)
+        room6.addItemToRoom(new Items("Vial", "Pym Particle Vial"));
+        room6.addItemToRoom(new Items("Suit", "Quantum Suit"));
+        room6.addItemToRoom(new Items("Helmet", "Ant-Man's Helmet"));
+        room6.addItemToRoom(new Items("Map", "Time Vortex Map"));
+        room6.addItemToRoom(new Food("Mushroom", "Quantum Mushroom", 10));
 
-        room9.addItemToRoom(new Items("sword", "A shattered sword"));
+// Guardian’s Chamber (Cosmic entity’s chamber)
+        room7.addItemToRoom(new Items("Necklace", "Ego’s Necklace"));
+        room7.addItemToRoom(new Items("Box", "The Collector’s Box"));
+        room7.addItemToRoom(new Food("Rations", "Celestial Ration Pack", 25));
 
+// Nexus Corridor (Multiverse warnings)
+        room8.addItemToRoom(new Items("Shield", "Captain America’s Shield"));
+        room8.addItemToRoom(new Items("Key", "Multiverse Key"));
+        room8.addItemToRoom(new Items("Compass", "Dimensional Compass"));
+        room8.addItemToRoom(new Food("Root", "Bitter Root", 12));
+
+// Fallen Bastion (Ruins of the Infinity War battle)
+        room9.addItemToRoom(new Items("Gauntlet", "Infinity Gauntlet"));
+        room9.addItemToRoom(new Items("Stone", "Broken Infinity Stone"));
+        room9.addItemToRoom(new Items("Fragment", "Stormbreaker Fragment"));
+        room9.addItemToRoom(new Items("Commlink", "Avengers Commlink"));
+        room9.addItemToRoom(new Food("Provisions", "Battle Provisions", 18));
 
 
         room1.setSouth(room4);
