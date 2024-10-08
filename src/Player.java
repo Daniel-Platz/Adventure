@@ -1,6 +1,7 @@
 import ItemPackage.EatStatus;
 import ItemPackage.Food;
 import ItemPackage.Items;
+import ItemPackage.Weapon;
 
 import java.util.ArrayList;
 
@@ -8,11 +9,13 @@ public class Player {
     private Rooms currentRoom;
     private ArrayList<Items> itemsInInventory;
     private int currentHealth;
+    private Weapon equippedWeapon;
 
     public Player(Rooms startRoom) {
         this.currentRoom = startRoom;
         this.itemsInInventory = new ArrayList<>();
         this.currentHealth = 100;
+        this.equippedWeapon = null;
     }
 
     public String takeItem(String itemName) {
@@ -81,17 +84,33 @@ public class Player {
         }
     }
 
-    public Rooms getCurrentRoom() {
-        return currentRoom;
+    public String equipWeapon(String weaponName) {
+        Items item = findItem(weaponName);
+
+        if (item instanceof Weapon weaponItem) {
+            equippedWeapon = weaponItem;
+            return "You have equipped " + weaponItem.getLongName();
+        } else {
+            return weaponName + " can not be equipped - make sure you have the item in your inventory and that it is a weapon";
+        }
     }
 
-    public Items findItem(String itemName) {
-        for (Items item : itemsInInventory) {
-            if (item.getShortName().equalsIgnoreCase(itemName)) {
-                return item;
-            }
+    public String attack() {
+        if (equippedWeapon == null) {
+            return "You don't have a weapon equipped";
         }
-        return null;
+        if (equippedWeapon.remainingUses() == 0) {
+            return "Your weapon is out of ammunition";
+        }
+        int damage = equippedWeapon.getDamage();
+        equippedWeapon.use();
+
+        return "You attacked with " + equippedWeapon.getLongName() + " for " + damage + " damage";
+
+    }
+
+    public Rooms getCurrentRoom() {
+        return currentRoom;
     }
 
     public boolean move(String direction) {
@@ -109,5 +128,14 @@ public class Player {
         } else {
             return false;
         }
+    }
+
+    public Items findItem(String itemName) {
+        for (Items item : itemsInInventory) {
+            if (item.getShortName().equalsIgnoreCase(itemName)) {
+                return item;
+            }
+        }
+        return null;
     }
 }

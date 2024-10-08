@@ -1,5 +1,4 @@
-import ItemPackage.Food;
-import ItemPackage.Items;
+import ItemPackage.*;
 
 public class Map {
     public Rooms createRooms() {
@@ -20,6 +19,7 @@ public class Map {
         room1.addItemToRoom(new Items("Wand", "Wand of Watoomb"));
         room1.addItemToRoom(new Items("Orb", "Astral Orb"));
         room1.addItemToRoom(new Food("Berries", "Chitauri Berries", 10));
+        room1.addItemToRoom(new RangedWeapon("weapon", "weapon", 20, 5));
 
 // Asgardian Armory (Asgardian relics)
         room2.addItemToRoom(new Items("Shards", "Mjolnir Shards"));

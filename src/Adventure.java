@@ -20,6 +20,8 @@ public class Adventure {
                 drop
                 eat
                 health
+                inventory
+                equip
                 go [north, south, east, west]
                 exit
                 help
@@ -39,7 +41,7 @@ public class Adventure {
                     isRunning = false;
                 }
                 case "help" -> {
-                    ui.print("Here is a list of commands: look, take, drop, eat, health, go [north, south, east, west], exit, help");
+                    ui.print("Here is a list of commands: look, take, drop, eat, health, inventory, equip, go [north, south, east, west], exit, help");
                 }
                 case "look" -> {
                     ui.print(player.getCurrentRoom().getRoomDescription());
@@ -73,6 +75,16 @@ public class Adventure {
                         ui.print("Please specify the item you want to eat.");
                     }
                 }
+                case "equip" -> {
+                    if (userChoice.length > 1) {
+                        ui.print(player.equipWeapon(userChoice[1]));
+                    } else {
+                        ui.print("Please specify the weapon you want to equip");
+                    }
+                }
+                case "attack" -> {
+                    ui.print(player.attack());
+                }
                 case "health" -> {
                     ui.print("Your current health is at: " + player.getCurrentHealth() + "/100");
                 }
@@ -97,7 +109,8 @@ public class Adventure {
 
     public void handleEatStatus(EatStatus status) {
         switch (status) {
-            case SUCCESS -> ui.print("You ate " + status.getItemLongName() + " and restored " + status.getHealthRestored() + " health. Current health: " + player.getCurrentHealth() + "/100.");
+            case SUCCESS ->
+                    ui.print("You ate " + status.getItemLongName() + " and restored " + status.getHealthRestored() + " health. Current health: " + player.getCurrentHealth() + "/100.");
             case ITEM_NOT_FOUND -> ui.print("There's nothing like that to eat.");
             case NOT_EDIBLE -> ui.print("You cannot eat that.");
         }
