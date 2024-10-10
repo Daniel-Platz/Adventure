@@ -9,7 +9,6 @@ public class Weapon extends Items {
         super(shortName, longName);
         this.damage = damage;
         this.remainingUses = remainingUses;
-
     }
 
     public int getDamage() {
@@ -25,6 +24,4 @@ public class Weapon extends Items {
             remainingUses--;
         }
     }
-
-
 }

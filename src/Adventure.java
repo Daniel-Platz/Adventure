@@ -12,24 +12,26 @@ public class Adventure {
     }
 
     public void startGame() {
+        // Starting game message with useful commands
         ui.print("""
-                Welcome to Guardians of the Nexus!
+                Welcome to The Infinity Path!
                 Before we get started, here is a list of useful commands:
-                look
-                take
-                drop
-                eat
-                health
-                inventory
-                equip
-                go [north, south, east, west]
-                exit
-                help
+                - look
+                - take
+                - drop
+                - eat
+                - health
+                - inventory
+                - equip
+                - go [north, south, east, west]
+                - exit
+                - help
                 """);
         ui.print("You currently find yourself in " + player.getCurrentRoom().getRoomName() + " " + player.getCurrentRoom().getRoomDescription());
 
         boolean isRunning = true;
 
+        // Main game loop
         while (isRunning) {
             String userInput = ui.getInput();
             String[] userChoice = userInput.split(" ");
@@ -41,11 +43,21 @@ public class Adventure {
                     isRunning = false;
                 }
                 case "help" -> {
-                    ui.print("Here is a list of commands: look, take, drop, eat, health, inventory, equip, go [north, south, east, west], exit, help");
+                    ui.print("""
+                            Here is a list of commands:
+                            - look: Describes the room you are currently in.
+                            - take [item]: Adds an item to your inventory.
+                            - drop [item]: Removes an item from your inventory.
+                            - eat [food]: Consumes food to restore health.
+                            - health: Displays your current health.
+                            - inventory: Shows the items in your inventory.
+                            - equip [weapon]: Equips a weapon from your inventory.
+                            - attack [enemy]: Attacks an enemy.
+                            - go [north, south, east, west]: Move in a specified direction.
+                            - exit: Exit the game.
+                            """);
                 }
-                case "look" -> {
-                    ui.print(player.getCurrentRoom().getRoomDescription());
-                }
+                case "look" -> ui.print(player.getCurrentRoom().getRoomDescription());
                 case "go" -> {
                     if (userChoice.length > 1) {
                         ui.print(movePlayer(userChoice[1]));
@@ -83,30 +95,41 @@ public class Adventure {
                     }
                 }
                 case "attack" -> {
-                    ui.print(player.attack());
+                    if (userChoice.length > 1) {
+                        ui.print(player.attack(userChoice[1]));
+                    } else {
+                        ui.print(player.attack(""));
+                    }
                 }
-                case "health" -> {
-                    ui.print("Your current health is at: " + player.getCurrentHealth() + "/100");
-                }
-                case "inventory", "inv", "i" -> {
-                    ui.print(player.showInventory());
-                }
-                default -> {
-                    ui.print("Unknown command. Type 'help' for a list of commands.");
-                }
+                case "health" -> ui.print("Your current health is at: " + player.getCurrentHealth() + "/100");
+                case "inventory", "inv", "i" -> ui.print(player.showInventory());
+                default -> ui.print("Unknown command. Type 'help' for a list of commands.");
+            }
+
+            // End game if player's health is 0 or less
+            if (player.getCurrentHealth() <= 0) {
+                ui.print("You have died. Game Over.");
+                isRunning = false;
             }
         }
     }
 
+    // Move the player in the given direction
     public String movePlayer(String direction) {
         boolean moved = player.move(direction);
         if (moved) {
-            return "You are now in: " + player.getCurrentRoom().getRoomName() + "\n" + player.getCurrentRoom().getRoomDescription();
+            return "\n====================\n"
+                    + "You carefully head " + direction + ".\n\n"
+                    + "You arrive at:\n"
+                    + "=== " + player.getCurrentRoom().getRoomName().toUpperCase() + " ===\n\n"
+                    + player.getCurrentRoom().getRoomDescription()
+                    + "\n====================\n";
         } else {
-            return "That way is blocked.";
+            return "You attempt to move " + direction + ", but something blocks your way. The path is impassable.";
         }
     }
 
+    // Handles the output of the eating operation based on the EatStatus
     public void handleEatStatus(EatStatus status) {
         switch (status) {
             case SUCCESS ->

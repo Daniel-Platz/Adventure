@@ -1,78 +1,67 @@
 import ItemPackage.*;
 
 public class Map {
+    // Method to create and connect rooms
     public Rooms createRooms() {
 
-        Rooms room1 = new Rooms("The Sanctum Tower.", "A towering, ancient structure reminiscent of Doctor Strange’s Sanctum Sanctorum. Mystical energies swirl through the air, with the faint hum of otherworldly magic.");
-        Rooms room2 = new Rooms("The Asgardian Armory.", "The once-grand armory of Asgard, filled with broken relics and discarded weapons of the mighty gods. A faint glow from Mjolnir’s forgotten shards illuminates the chamber.");
-        Rooms room3 = new Rooms("The Stark Quarters.", "An abandoned room with overturned furniture, resembling Tony Stark's workshop. A mysterious holographic marking hints at a hidden project left behind.");
-        Rooms room4 = new Rooms("The Hydra Chains.", "Rusty chains dangle from the ceiling, engraved with the Hydra emblem. The room reeks of treachery, its walls bearing symbols of a sinister organization.");
-        Rooms room5 = new Rooms("The Wakandan Vault.", "A treasure room glowing with the light of vibranium. The walls are etched with ancient Wakandan symbols, and a mysterious artifact radiates immense power.");
-        Rooms room6 = new Rooms("The Quantum Tunnels.", "Dark, winding tunnels that stretch endlessly like the quantum realm. The echoes distort as if bouncing through different dimensions, making it hard to find your way.");
-        Rooms room7 = new Rooms("The Guardian's Chamber.", "The personal quarters of a powerful being, perhaps an Elder of the Universe. It feels as though someone or something has been here recently.");
-        Rooms room8 = new Rooms("The Nexus Corridor.", "A dimly lit passage, adorned with warnings about the dangers of tampering with the multiverse. It leads straight to the Vault of Wakanda, where powerful forces await.");
-        Rooms room9 = new Rooms("The Fallen Bastion.", "Once a great fortress, now resembling the ruins of a battle between the Avengers and Thanos. The remnants of the struggle for the Infinity Stones still echo in the air.");
+        // Define all the rooms with their names and descriptions
+        Rooms room1 = new Rooms("The Sanctum Tower", "A towering, ancient structure reminiscent of Doctor Strange’s Sanctum Sanctorum. Mystical energies swirl through the air, with the faint hum of otherworldly magic.");
+        Rooms room2 = new Rooms("Stark Tech Lab", "A cutting-edge laboratory filled with glowing screens, advanced gadgets, and Iron Man suits in various stages of construction. The hum of arc reactors fills the air, and you can almost hear Tony Stark’s voice guiding you through the latest tech marvels.");
+        Rooms room3 = new Rooms("The Bifrost Bridge", "A shimmering, rainbow bridge stretches across the void, connecting realms beyond imagination. The air crackles with the power of Asgardian magic, and the distant sound of Thor's hammer echoes from unseen battlefields.");
+        Rooms room4 = new Rooms("The Savage Land Jungle", "Thick, prehistoric foliage surrounds you as the dense jungle of the Savage Land comes alive with the sounds of ancient beasts. A subtle warmth in the air suggests the presence of life — or danger — nearby.");
+        Rooms room5 = new Rooms("The Vault of Infinity", "A grand treasure room filled with the most sought-after relics of the universe. The Infinity Gauntlet sits on a pedestal at the center, glowing faintly. Gold and gems line the walls, but the true power here lies in the artifacts of unimaginable cosmic force.");
+        Rooms room6 = new Rooms("The Helicarrier Hangar", "High above the clouds, the S.H.I.E.L.D. Helicarrier floats silently. The hangar bay opens up to a vast sky, with jet fighters and high-tech weaponry at the ready. The sense of duty and covert missions fills the air, as agents move about on secret assignments.");
+        Rooms room7 = new Rooms("Wakandan Panther Shrine", "The sacred heart of Wakanda, where the spirit of the Black Panther reigns. Statues of panthers guard the shrine, and vibrant, glowing vibranium illuminates the ancient stone carvings. A sense of honor and responsibility permeates this hallowed ground.");
+        Rooms room8 = new Rooms("Quantum Realm Nexus", "Time and space bend around you in this surreal, mind-bending environment. Floating objects and distorted light shift unpredictably as if reality itself is being unraveled. Ant-Man's experiments with the quantum realm left this nexus as a gateway to possibilities untold.");
+        Rooms room9 = new Rooms("The Dark Dimension", "The dark and twisted dimension ruled by Dormammu. Strange, chaotic forces pull at your very being, and shadows seem to move of their own");
 
-// Sanctum Tower (Doctor Strange's Sanctum)
-        room1.addItemToRoom(new Items("Eye", "Eye of Agamotto"));
-        room1.addItemToRoom(new Items("Cloak", "Cloak of Levitation"));
-        room1.addItemToRoom(new Items("Wand", "Wand of Watoomb"));
-        room1.addItemToRoom(new Items("Orb", "Astral Orb"));
-        room1.addItemToRoom(new Food("Berries", "Chitauri Berries", 10));
-        room1.addItemToRoom(new RangedWeapon("weapon", "weapon", 20, 5));
+        //Generic items
+        room1.addItemToRoom(new Items("scroll", "An ancient scroll filled with arcane runes."));
+        room2.addItemToRoom(new Items("reactor", "A glowing arc reactor, pulsating with energy."));
+        room3.addItemToRoom(new Items("sword", "A shard of Heimdall’s sword, still resonating with power."));
+        room4.addItemToRoom(new Items("bone", "A large, fossilized bone from a prehistoric creature."));
+        room5.addItemToRoom(new Items("shard", "A shard of one of the fabled Infinity Stones, radiating immense power."));
+        room6.addItemToRoom(new Items("shield", "A folder of classified S.H.I.E.L.D. documents."));
+        room7.addItemToRoom(new Items("statue", "A small panther statue made of pure vibranium."));
+        room8.addItemToRoom(new Items("vial", "A vial containing a mysterious quantum substance."));
+        room9.addItemToRoom(new Items("mirror", "A cursed mirror from the Dark Dimension, distorting reflections."));
 
-// Asgardian Armory (Asgardian relics)
-        room2.addItemToRoom(new Items("Shards", "Mjolnir Shards"));
-        room2.addItemToRoom(new Items("Helmet", "Asgardian Helmet"));
-        room2.addItemToRoom(new Items("Spear", "Odin's Spear Fragment"));
-        room2.addItemToRoom(new Items("Gauntlet", "Valkyrie’s Gauntlet"));
-        room2.addItemToRoom(new Food("Bread", "Lembas Bread", 8));
+        //Food items
+        room1.addItemToRoom(new Food("apple", "A glowing apple imbued with magical properties.", 20));
+        room2.addItemToRoom(new Food("bar", "A high-tech energy bar, providing a quick boost of stamina.", 15));
+        room3.addItemToRoom(new Food("ale", "A strong drink from Asgard, known to heal minor wounds.", 10));
+        room4.addItemToRoom(new Food("meat", "Cooked meat from a prehistoric beast, restoring energy.", 30));
+        room5.addItemToRoom(new Food("bread", "A loaf of bread that shimmers with cosmic energy.", 25));
+        room6.addItemToRoom(new Food("rations", "Standard issue S.H.I.E.L.D. field rations, practical but effective.", 15));
+        room7.addItemToRoom(new Food("herb", "A rare herb from Wakanda, known for its healing properties.", 40));
+        room8.addItemToRoom(new Food("soup", "A swirling bowl of quantum particles, strangely nutritious.", 20));
+        room9.addItemToRoom(new Food("fruit", "A fruit from the Dark Dimension, both dangerous and invigorating.", 35));
 
-// Stark Quarters (Tony Stark’s abandoned workshop)
-        room3.addItemToRoom(new Items("Reactor", "Arc Reactor"));
-        room3.addItemToRoom(new Items("Gauntlet", "Iron Man Gauntlet"));
-        room3.addItemToRoom(new Items("Projector", "Hologram Projector"));
-        room3.addItemToRoom(new Items("Glove", "Repulsor Glove"));
-        room3.addItemToRoom(new Food("Cheese", "Stark Cheese", 15));
+        //Ranged weapons
+        room1.addItemToRoom(new RangedWeapon("blast", "A weaponized magical artifact capable of firing energy blasts.", 25, 5));
+        room2.addItemToRoom(new RangedWeapon("glove", "A glove that shoots out repulsor beams, designed by Tony Stark.", 20, 6));
+        room3.addItemToRoom(new RangedWeapon("arrow", "An arrow imbued with Bifrost energy, capable of hitting enemies from great distances.", 30, 3));
+        room6.addItemToRoom(new RangedWeapon("pistol", "A standard-issue S.H.I.E.L.D. pistol, lightweight and effective.", 15, 10));
+        room8.addItemToRoom(new RangedWeapon("blaster", "A blaster that shoots quantum particles, warping time and space.", 25, 4));
 
-// Hydra Chains (Hydra's sinister secrets)
-        room4.addItemToRoom(new Items("Dagger", "Hydra Dagger"));
-        room4.addItemToRoom(new Items("Tesseract", "Tesseract Fragment"));
-        room4.addItemToRoom(new Items("Arm", "Winter Soldier's Arm"));
-        room4.addItemToRoom(new Food("Rations", "Hydra Rations", 5));
+        //Melee weapons
+        room3.addItemToRoom(new MeleeWeapon("hammer", "A powerful hammer forged in Asgard, capable of crushing enemies.", 35, -1));
+        room4.addItemToRoom(new MeleeWeapon("axe", "A crude axe made from the bone of a prehistoric beast.", 20, -1));
+        room5.addItemToRoom(new MeleeWeapon("blade", "A blade forged from the power of the Infinity Stones, capable of devastating attacks.", 40, -1));
+        room7.addItemToRoom(new MeleeWeapon("spear", "A lightweight but powerful spear made from vibranium, favored by Wakandan warriors.", 30, -1));
+        room9.addItemToRoom(new MeleeWeapon("scythe", "A cursed scythe from the Dark Dimension, pulsing with malevolent energy.", 35, -1));
 
-// Wakandan Vault (Vibranium treasures)
-        room5.addItemToRoom(new Items("Chest", "Vibranium Chest"));
-        room5.addItemToRoom(new Items("Orb", "Soul Orb"));
-        room5.addItemToRoom(new Items("Crown", "Panther Crown"));
-        room5.addItemToRoom(new Food("Herb", "Heart-Shaped Herb", 50));
+        //Enemies
+        room1.addEnemyToRoom(new Enemies("Sorcerer", "A master of the mystic arts, drawing power from the Sanctum.", 50, new MeleeWeapon("arcane_staff", "A staff infused with magical energy.", 20, -1)));
+        room2.addEnemyToRoom(new Enemies("Iron Drone", "A rogue Stark drone, designed for battle.", 40, new RangedWeapon("drone_cannon", "A powerful energy cannon mounted on the drone.", 25, 3)));
+        room3.addEnemyToRoom(new Enemies("Asgardian Warrior", "A fierce warrior from Asgard, armed with godlike strength.", 60, new MeleeWeapon("warrior_sword", "A sword forged in Asgardian flames.", 30, -1)));
+        room4.addEnemyToRoom(new Enemies("Savage Beast", "A prehistoric beast with razor-sharp claws, roaming the jungle.", 55, new MeleeWeapon("claws", "The razor-sharp claws of the beast.", 20, -1)));
+        room6.addEnemyToRoom(new Enemies("S.H.I.E.L.D. Agent", "A highly trained agent, ready to defend the Helicarrier.", 45, new RangedWeapon("agent_gun", "A standard-issue firearm.", 15, 6)));
+        room7.addEnemyToRoom(new Enemies("Wakandan Guard", "A loyal guard of the Panther Shrine, armed with vibranium weapons.", 50, new MeleeWeapon("vibranium_dagger", "A short but deadly vibranium dagger.", 25, -1)));
+        room8.addEnemyToRoom(new Enemies("Quantum Wraith", "A creature born from the quantum realm, flickering in and out of existence.", 60, new RangedWeapon("wraith_bolt", "A bolt of quantum energy that distorts time.", 20, 5)));
+        room9.addEnemyToRoom(new Enemies("Dark Minion", "A twisted being from the Dark Dimension, serving Dormammu.", 65, new MeleeWeapon("shadow_blade", "A blade of pure darkness.", 30, -1)));
 
-// Quantum Tunnels (Quantum Realm exploration)
-        room6.addItemToRoom(new Items("Vial", "Pym Particle Vial"));
-        room6.addItemToRoom(new Items("Suit", "Quantum Suit"));
-        room6.addItemToRoom(new Items("Helmet", "Ant-Man's Helmet"));
-        room6.addItemToRoom(new Items("Map", "Time Vortex Map"));
-        room6.addItemToRoom(new Food("Mushroom", "Quantum Mushroom", 10));
-
-// Guardian’s Chamber (Cosmic entity’s chamber)
-        room7.addItemToRoom(new Items("Necklace", "Ego’s Necklace"));
-        room7.addItemToRoom(new Items("Box", "The Collector’s Box"));
-        room7.addItemToRoom(new Food("Rations", "Celestial Ration Pack", 25));
-
-// Nexus Corridor (Multiverse warnings)
-        room8.addItemToRoom(new Items("Shield", "Captain America’s Shield"));
-        room8.addItemToRoom(new Items("Key", "Multiverse Key"));
-        room8.addItemToRoom(new Items("Compass", "Dimensional Compass"));
-        room8.addItemToRoom(new Food("Root", "Bitter Root", 12));
-
-// Fallen Bastion (Ruins of the Infinity War battle)
-        room9.addItemToRoom(new Items("Gauntlet", "Infinity Gauntlet"));
-        room9.addItemToRoom(new Items("Stone", "Broken Infinity Stone"));
-        room9.addItemToRoom(new Items("Fragment", "Stormbreaker Fragment"));
-        room9.addItemToRoom(new Items("Commlink", "Avengers Commlink"));
-        room9.addItemToRoom(new Food("Provisions", "Battle Provisions", 18));
-
-
+        // Method to connect rooms
         room1.setSouth(room4);
         room1.setEast(room2);
 

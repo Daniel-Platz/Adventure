@@ -1,5 +1,4 @@
 import ItemPackage.Items;
-
 import java.util.ArrayList;
 
 public class Rooms {
@@ -8,11 +7,13 @@ public class Rooms {
     private String roomDescription;
     private Rooms north, south, east, west;
     private ArrayList<Items> itemsInRoom;
+    private ArrayList<Enemies> enemiesInRoom;
 
     public Rooms(String roomName, String roomDescription) {
         this.roomName = roomName;
         this.roomDescription = roomDescription;
         this.itemsInRoom = new ArrayList<>();
+        this.enemiesInRoom = new ArrayList<>();
     }
 
     public String getRoomName() {
@@ -22,14 +23,26 @@ public class Rooms {
     public String getRoomDescription() {
         String description = roomDescription;
 
+        // Add items to description
         if (!itemsInRoom.isEmpty()) {
-            description += "\nItems in the room:\n\t";
+            description += "\n\nAs you scan the room, you notice the following items scattered around:";
             for (Items item : itemsInRoom) {
-                description += item.getLongName() + "\n\t";
+                description += "\n- " + item.getLongName() + " lies here, waiting to be taken.";
             }
         } else {
-            description += "\nThere are no items in this room.";
+            description += "\nThere are no items in sight, but the room's atmosphere feels heavy with mystery.";
         }
+
+        // Add enemies to description
+        if (!enemiesInRoom.isEmpty()) {
+            description += "\n\nYour eyes lock onto the following enemies in the room, each one a potential threat:";
+            for (Enemies enemy : enemiesInRoom) {
+                description += "\n- " + enemy.getEnemyName() + ", " + enemy.getEnemyDescription() + ". This enemy looks dangerous with " + enemy.getEnemyHealth() + " health remaining.";
+            }
+        } else {
+            description += "\n\nThe room feels eerily quiet; no enemies seem to be present, for now.";
+        }
+
         return description;
     }
 
@@ -50,6 +63,28 @@ public class Rooms {
         return null;
     }
 
+    public void addEnemyToRoom(Enemies enemy) {
+        enemiesInRoom.add(enemy);
+    }
+
+    public ArrayList<Enemies> getEnemiesInRoom() {
+        return enemiesInRoom;
+    }
+
+    public void removeEnemy(Enemies enemy) {
+        enemiesInRoom.remove(enemy);
+    }
+
+    public Enemies findEnemy(String enemyName) {
+        for (Enemies enemy : enemiesInRoom) {
+            if (enemy.getEnemyName().equalsIgnoreCase(enemyName)) {
+                return enemy;
+            }
+        }
+        return null;
+    }
+
+    // Room navigation methods
     public void setNorth(Rooms north) {
         this.north = north;
     }
